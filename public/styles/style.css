@@ -1,3 +1,21 @@
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    45deg, 
+    #f6f8ff 0%,
+    #e8ecf9 25%,
+    #f0f4ff 50%,
+    #e1e7ff 75%,
+    #f6f8ff 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -84,14 +102,18 @@
 
 
 #wrapper {
-  height: 100vh;
-  overflow-y: auto;
+  width: 100%;
+  position: relative;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 .container {
-  width: 1200px;
-  margin: 0, auto;
-
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 .navbar {
   display: flex;
@@ -124,11 +146,12 @@
   font-size: 20px;
   font-weight: 500;
   color: black;
+  transition: all 0.3s ease;
 }
 
 .nav-item div:hover {
-  transition-duration: 1s;
-  font-weight: bold;
+  transform: translateY(-2px);
+  color: #007bff;
 }
 
 a {
@@ -144,6 +167,11 @@ a {
   margin: 4rem auto;
   padding: 0 1rem;
   padding-bottom: 8rem;
+  animation: fadeIn 1s ease-out;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
 }
 
 .faded-text {
@@ -178,6 +206,10 @@ a {
   display: block; /* Make the entire card clickable */
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit text color */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeIn 0.8s ease-out;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 
@@ -186,7 +218,7 @@ a {
   cursor: pointer;
   font-size: 18px;
   box-shadow: 5px 5px 7px 0px black;
-  transition: all 0.5s;
+  transition: all 0.3s ease;
   font-weight: 500;
   border: solid 3px transparent;
   position: relative;
@@ -225,6 +257,8 @@ cursor: pointer;  */
   border: solid 3px rgb(255, 0, 157);
   color: black;
   background-color: #ff85c8;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 .btn-project {
   font-weight: bold;
@@ -274,6 +308,10 @@ cursor: pointer;  */
   background-color:white(187, 70, 128);
   margin:5rem;
   gap:3rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .h2-heading{
@@ -373,7 +411,7 @@ cursor: pointer;  */
   bottom: 20%;
   z-index:40;
   gap:1em;
-  transition:all 0.4s;
+  transition: all 0.5s ease;
   padding:5em;
 }
 .project-skill{
@@ -418,7 +456,7 @@ cursor: pointer;  */
 .project-card:hover .project-content
 {
    z-index:40; 
-  transform: scale(1.05);
+  transform: translateY(-10px);
 }
 #project1{
   background-image:url(/images/Linux.jpg);
@@ -442,9 +480,13 @@ cursor: pointer;  */
   justify-content: space-between;
   align-items: center;
   padding: 40px 20px;
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
+  animation: fadeIn 1s ease-out;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
 }
 
 .skill-section-left {
@@ -491,24 +533,30 @@ cursor: pointer;  */
 
 .icon-right-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
 .skill-logo-container {
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.8s ease-out;
+  transition: all 0.3s ease;
+  height: 120px; /* Add fixed height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .skill-logo-container:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Reduce the transform distance */
 }
 
 .skill-logo {
   width: 70px;
-  height: auto;
+  height: 70px; /* Fixed height for logos */
   margin-bottom: 10px;
+  object-fit: contain; /* Maintain aspect ratio */
 }
 
 .skill-logo-container p {
@@ -516,10 +564,17 @@ cursor: pointer;  */
   color: #333;
   margin: 0;
   font-weight: 500;
+  position: relative; /* Add position relative */
+  bottom: 0; /* Keep text at bottom */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  * {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
   .skill-section {
     flex-direction: column;
     text-align: center;
@@ -537,8 +592,19 @@ cursor: pointer;  */
   .faded-text {
     font-size: 5rem;
   }
-}
 
+  .project-card {
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: scale(1.02);
+  }
+
+  .skill-logo-container:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
 
 .contactus-form-container{
   width:100%;
@@ -717,7 +783,8 @@ padding: 1rem;
 
 
 .project-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Media queries for project section */
@@ -897,3 +964,163 @@ text-align: center;
     padding: 8px 16px;
   }
 }
+
+/* Add/modify these responsive styles */
+@media (max-width: 768px) {
+  * {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 15px;
+    overflow-x: hidden;
+  }
+
+  .project-section {
+    margin: 2rem auto;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .project-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .project-card {
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    transform: none !important;
+  }
+
+  #project2 {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .project-content {
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+
+  .project-content-left,
+  .project-content-right {
+    left: 0;
+    right: 0;
+  }
+
+  .project-number-right,
+  .project-number-left {
+    display: none;
+  }
+
+  .faded-text {
+    display: none;
+  }
+}
+
+/* Add extra small device fixes */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .project-section {
+    margin: 1rem auto;
+  }
+}
+
+/* Add these new animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add this particle effect background */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%),
+    radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%);
+  background-size: 100px 100px;
+  animation: moveBackground 30s linear infinite;
+}
+
+/* Add subtle hover effects for cards */
+.project-card:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Add this nice border effect */
+.section-border {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  html, body {
+    background-size: 200% 200%;
+  }
+
+  .background-overlay {
+    background-size: 50px 50px;
+  }
+
+  .hero-section,
+  .project-section,
+  .skill-section {
+    backdrop-filter: blur(5px);
+    margin: 1rem;
+  }
+}
+
+/* Add these new animations */
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+
+
+
+
+
+
+
